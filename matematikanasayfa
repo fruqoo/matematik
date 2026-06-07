@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10. Sınıf Matematik – Senaryo 1 Konu Anlatımı</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #222636;
+    --border: #2e3348;
+    --accent1: #4f8ef7;
+    --accent2: #7c5af7;
+    --accent3: #f75a8e;
+    --accent4: #3dd6ac;
+    --accent5: #f7a843;
+    --text: #e8eaf2;
+    --muted: #8890a8;
+    --formula-bg: #12151f;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Sora', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 15px;
+  }
+
+  /* Header */
+  .hero {
+    background: linear-gradient(135deg, #0f1117 0%, #1a1030 50%, #0a1a2e 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 40px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(79,142,247,0.12), transparent),
+                radial-gradient(ellipse 40% 30% at 80% 80%, rgba(124,90,247,0.08), transparent);
+    pointer-events: none;
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(79,142,247,0.15);
+    border: 1px solid rgba(79,142,247,0.3);
+    color: var(--accent1);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+    font-weight: 600;
+  }
+  .hero h1 {
+    font-size: clamp(24px, 4vw, 40px);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  .hero p {
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  /* Nav */
+  .toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    padding: 28px 30px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .toc a {
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    transition: all 0.2s;
+  }
+  .toc a:hover { border-color: var(--accent1); color: var(--accent1); background: rgba(79,142,247,0.08); }
+  .toc a.t1 { border-color: rgba(79,142,247,0.4); color: var(--accent1); }
+  .toc a.t2 { border-color: rgba(124,90,247,0.4); color: var(--accent2); }
+  .toc a.t3 { border-color: rgba(61,214,172,0.4); color: var(--accent4); }
+  .toc a.t4 { border-color: rgba(247,90,142,0.4); color: var(--accent3); }
+
+  /* Layout */
+  .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+  /* Section */
+  .section {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+  .section-num {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .s1 .section-num { background: rgba(79,142,247,0.15); color: var(--accent1); border: 1px solid rgba(79,142,247,0.3); }
+  .s2 .section-num { background: rgba(124,90,247,0.15); color: var(--accent2); border: 1px solid rgba(124,90,247,0.3); }
+  .s3 .section-num { background: rgba(61,214,172,0.15); color: var(--accent4); border: 1px solid rgba(61,214,172,0.3); }
+  .s4 .section-num { background: rgba(247,90,142,0.15); color: var(--accent3); border: 1px solid rgba(247,90,142,0.3); }
+
+  .section-title { font-size: 22px; font-weight: 700; color: #fff; }
+  .section-sub { font-size: 12px; color: var(--muted); margin-top: 3px; font-weight: 400; }
+
+  /* Outcome tag */
+  .outcome-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    padding: 5px 12px;
+    border-radius: 6px;
+    margin-bottom: 24px;
+    font-weight: 600;
+  }
+  .s1 .outcome-tag { background: rgba(79,142,247,0.1); border: 1px solid rgba(79,142,247,0.25); color: var(--accent1); }
+  .s2 .outcome-tag { background: rgba(124,90,247,0.1); border: 1px solid rgba(124,90,247,0.25); color: var(--accent2); }
+  .s3 .outcome-tag { background: rgba(61,214,172,0.1); border: 1px solid rgba(61,214,172,0.25); color: var(--accent4); }
+  .s4 .outcome-tag { background: rgba(247,90,142,0.1); border: 1px solid rgba(247,90,142,0.25); color: var(--accent3); }
+
+  /* Prose */
+  p { color: #c8ccda; margin-bottom: 14px; }
+  h3 { font-size: 16px; font-weight: 700; color: #fff; margin: 28px 0 12px; }
+  h4 { font-size: 14px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin: 22px 0 8px; }
+
+  /* Formula box */
+  .formula-box {
+    background: var(--formula-bg);
+    border: 1px solid var(--border);
+    border-left: 3px solid;
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin: 20px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+  }
+  .s1 .formula-box { border-left-color: var(--accent1); }
+  .s2 .formula-box { border-left-color: var(--accent2); }
+  .s3 .formula-box { border-left-color: var(--accent4); }
+  .s4 .formula-box { border-left-color: var(--accent3); }
+  .formula-box .label {
+    font-family: 'Sora', sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    opacity: 0.6;
+  }
+  .formula-box .expr {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .formula-box .desc {
+    font-family: 'Sora', sans-serif;
+    font-size: 12.5px;
+    color: var(--muted);
+  }
+
+  /* Example card */
+  .example {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+  .example-head {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .s1 .example-head { color: var(--accent1); }
+  .s2 .example-head { color: var(--accent2); }
+  .s3 .example-head { color: var(--accent4); }
+  .s4 .example-head { color: var(--accent3); }
+  .example p { margin: 0; color: #c8ccda; font-size: 14px; }
+  .example .solution {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .example .solution strong { color: #fff; }
+
+  /* Info box */
+  .info-box {
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 20px 0;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .info-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .info-box.tip { background: rgba(79,142,247,0.07); border: 1px solid rgba(79,142,247,0.2); }
+  .info-box.warn { background: rgba(247,168,67,0.07); border: 1px solid rgba(247,168,67,0.2); }
+  .info-box p { margin: 0; font-size: 13.5px; }
+
+  /* Table */
+  .table-wrap { overflow-x: auto; margin: 20px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    background: var(--surface2);
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--muted);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1px solid var(--border);
+  }
+  td { padding: 9px 14px; border: 1px solid var(--border); color: #c8ccda; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+  /* Steps */
+  .steps { margin: 20px 0; }
+  .step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .s3 .step-num { background: rgba(61,214,172,0.15); color: var(--accent4); border: 1px solid rgba(61,214,172,0.3); }
+  .s4 .step-num { background: rgba(247,90,142,0.15); color: var(--accent3); border: 1px solid rgba(247,90,142,0.3); }
+  .step-body { flex: 1; color: #c8ccda; font-size: 14px; padding-top: 4px; }
+
+  /* Grid 2 */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+  @media(max-width: 600px) { .grid2 { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+  }
+  .card-title { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .card p { font-size: 13px; color: var(--muted); margin: 0; }
+
+  /* Highlight */
+  .hl { color: #fff; font-weight: 600; }
+  .mono { font-family: 'JetBrains Mono', monospace; font-size: 13.5px; background: rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 4px; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 40px 24px;
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  /* Divider */
+  .divider { width: 40px; height: 3px; border-radius: 2px; margin: 20px 0; }
+  .s1 .divider { background: var(--accent1); }
+  .s2 .divider { background: var(--accent2); }
+  .s3 .divider { background: var(--accent4); }
+  .s4 .divider { background: var(--accent3); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">MEB 10. Sınıf Matematik • Senaryo 1</div>
+  <h1>Konu Anlatımı Özeti</h1>
+  <p>Kitabından hazırlandı &nbsp;·&nbsp; 4 konu &nbsp;·&nbsp; 4 öğrenme çıktısı</p>
+</div>
+
+<nav class="toc">
+  <a href="#konu1" class="t1">📐 Fonksiyonlar & Denklemler</a>
+  <a href="#konu2" class="t2">🔢 Sayma Stratejileri</a>
+  <a href="#konu3" class="t3">📍 Analitik İnceleme</a>
+  <a href="#konu4" class="t4">🎲 Koşullu Olasılık</a>
+</nav>
+
+<!-- KONU 1 -->
+<div class="container">
+<section class="section s1" id="konu1">
+  <div class="section-header">
+    <div class="section-num">10.2.6</div>
+    <div>
+      <div class="section-title">Fonksiyonlar, Denklemler ve Eşitsizlikler</div>
+      <div class="section-sub">Nicelikler ve Değişimler Teması</div>
+    </div>
+  </div>
+
+  <div class="outcome-tag">🎯 Hedef: Doğrusal, karesel, karekök ve rasyonel fonksiyonlarla ifade edilen denklem ve eşitsizlik problemlerini çözebilme</div>
+
+  <h3>Referans Fonksiyonlar</h3>
+  <p>Matematikte dört temel referans fonksiyon vardır. Bunlar, diğer tüm türev fonksiyonların temelini oluşturur.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title">📏 Doğrusal Fonksiyon</div>
+      <p class="mono">f(x) = x</p>
+      <p style="margin-top:8px">Grafik düz bir doğrudur. Sürekli artan, bire bir ve örten bir fonksiyondur.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">🔵 Karesel Fonksiyon</div>
+      <p class="mono">f(x) = x²</p>
+      <p style="margin-top:8px">Grafik parabolüdür. (0,0) noktasında minimum, eksen simetrisi y eksenindedir.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">√ Karekök Fonksiyon</div>
+      <p class="mono">f(x) = √x &nbsp;(x ≥ 0)</p>
+      <p style="margin-top:8px">Tanım kümesi [0,+∞). Sürekli artan, bire bir fonksiyondur.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">÷ Rasyonel Fonksiyon</div>
+      <p class="mono">f(x) = 1/x &nbsp;(x ≠ 0)</p>
+      <p style="margin-top:8px">Eksenler asimptottur. Çift simetri ekseni y = x ve y = –x doğrularıdır.</p>
+    </div>
+  </div>
+
+  <h3>Dönüşümlerle Türetilmiş Fonksiyonlar</h3>
+  <p>Referans fonksiyona uygulanabilecek dönüşümler:</p>
+
+  <div class="formula-box">
+    <div class="label">Genel Dönüşüm Kalıbı</div>
+    <div class="expr">g(x) = a · f(x ± r) ± k</div>
+    <div class="desc">
+      a: dikey ölçekleme (|a| &gt; 1 uzatır, |a| &lt; 1 sıkıştırır; a &lt; 0 x eksenine göre yansıtır)<br>
+      r: yatay öteleme (x – r → sağa, x + r → sola)<br>
+      k: dikey öteleme (+k yukarı, –k aşağı)
+    </div>
+  </div>
+
+  <div class="example">
+    <div class="example-head">✦ Örnek</div>
+    <p><strong>f(x) = x</strong> (doğrusal referans) verilmiştir. <strong>g(x) = 2·f(x+1) + 4</strong> fonksiyonuna hangi dönüşümler uygulanmıştır?</p>
+    <div class="solution">
+      <strong>Çözüm:</strong> x yerine (x+1) yazılması → <strong>1 birim sola öteleme</strong><br>
+      Katsayı 2 → <strong>dikey yönde 2 kat uzatma</strong><br>
+      +4 → <strong>4 birim yukarı öteleme</strong><br>
+      Sonuçta g(x) = 2x + 6 cebirsel ifadesine ulaşılır.
+    </div>
+  </div>
+
+  <h3>Fonksiyonların Nitel Özellikleri</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Özellik</th><th>Ne Anlama Gelir?</th></tr>
+      <tr><td>Artanlık – Azalanlık</td><td>Fonksiyonun hangi aralıklarda büyüdüğü veya küçüldüğü</td></tr>
+      <tr><td>Sıfırlar</td><td>f(x) = 0 yapan x değerleri (grafiğin x eksenini kestiği noktalar)</td></tr>
+      <tr><td>İşaret</td><td>f(x) > 0 ve f(x) < 0 olan aralıklar</td></tr>
+      <tr><td>Maksimum – Minimum</td><td>Fonksiyonun en büyük veya en küçük değer aldığı noktalar</td></tr>
+      <tr><td>Bire Birlik</td><td>Her y değerine tam bir x değeri karşılık geliyorsa bire birdir</td></tr>
+      <tr><td>Ters Fonksiyon (f⁻¹)</td><td>Sadece bire bir fonksiyonların tersi bulunabilir</td></tr>
+    </table>
+  </div>
+
+  <h3>Denklem ve Eşitsizlik Çözümü</h3>
+  <p>Bu fonksiyonları içeren problemlerde izlenecek genel yol:</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num s3-n" style="background:rgba(79,142,247,.15);color:var(--accent1);border:1px solid rgba(79,142,247,.3)">1</div>
+      <div class="step-body">Fonksiyonun türünü (doğrusal, karesel vb.) belirle.</div>
+    </div>
+    <div class="step">
+      <div class="step-num" style="background:rgba(79,142,247,.15);color:var(--accent1);border:1px solid rgba(79,142,247,.3)">2</div>
+      <div class="step-body">Gerekirse grafik çiz; sıfır ve işaret cetvelini oluştur.</div>
+    </div>
+    <div class="step">
+      <div class="step-num" style="background:rgba(79,142,247,.15);color:var(--accent1);border:1px solid rgba(79,142,247,.3)">3</div>
+      <div class="step-body">Denklemi çöz (karesel: diskriminant; karekök: her iki tarafı karele; rasyonel: paydayı sıfır yapan değerleri hariç tut).</div>
+    </div>
+    <div class="step">
+      <div class="step-num" style="background:rgba(79,142,247,.15);color:var(--accent1);border:1px solid rgba(79,142,247,.3)">4</div>
+      <div class="step-body">Eşitsizlik içinse işaret cetveli kur ve uygun aralıkları yaz.</div>
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <span class="info-icon">💡</span>
+    <p>Rasyonel fonksiyon içeren denklemlerde <strong>payda = 0 yapan değerler</strong> her zaman tanım kümesi dışındadır; çözüm kümesine yazılmaz.</p>
+  </div>
+</section>
+
+<!-- KONU 2 -->
+<section class="section s2" id="konu2">
+  <div class="section-header">
+    <div class="section-num">10.3</div>
+    <div>
+      <div class="section-title">Sayma Stratejileri ve Algoritmik Yapı</div>
+      <div class="section-sub">Sayma, Algoritma ve Bilişim Teması</div>
+    </div>
+  </div>
+
+  <div class="outcome-tag">🎯 Hedef: Sayma stratejileri kullanarak problem çözebilme ve cebirsel/fonksiyonel işlemleri algoritmik dille yapılandırabilme</div>
+
+  <h3>Temel Sayma Yöntemleri</h3>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title">Eşleştirme Yoluyla Sayma</div>
+      <p>Nesneleri Z⁺ = {1, 2, 3, …} elemanlarıyla bire bir eşleştirerek sayma. En eski yöntemdir.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Toplama Yoluyla Sayma</div>
+      <p>Ortak elemanı olmayan gruplardaki nesne sayılarını toplayarak toplam sayıya ulaşma.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Çarpma Yoluyla Sayma</div>
+      <p>Birden fazla bağımsız seçimden oluşan durumlarda seçim sayılarını çarparak toplam bulma.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Çıkarma / Tamamlayıcı</div>
+      <p>Toplam sayıdan istenmeyen durumları çıkarma; dolaylı sayma yöntemi.</p>
+    </div>
+  </div>
+
+  <h3>Faktöriyel</h3>
+
+  <div class="formula-box">
+    <div class="label">Tanım</div>
+    <div class="expr">n! = 1 × 2 × 3 × … × (n−1) × n</div>
+    <div class="desc">
+      Özel değerler: 0! = 1 &nbsp;|&nbsp; 1! = 1 &nbsp;|&nbsp; 2! = 2 &nbsp;|&nbsp; 3! = 6 &nbsp;|&nbsp; 4! = 24 &nbsp;|&nbsp; 5! = 120 &nbsp;|&nbsp; 6! = 720<br>
+      Kısaltma: 7! = 7 × 6! = 7 × 720 = 5040
+    </div>
+  </div>
+
+  <h3>Sıralama Sayısı</h3>
+  <p><span class="hl">n farklı nesne</span> düz bir sıraya <span class="mono">n!</span> farklı şekilde sıralanabilir.</p>
+
+  <div class="formula-box">
+    <div class="label">n nesneden r tanesinin sıralama sayısı</div>
+    <div class="expr">P(n, r) = n! / (n−r)!</div>
+    <div class="desc">= n × (n−1) × (n−2) × … × (n−r+1) &nbsp;&nbsp; (r tane çarpım)</div>
+  </div>
+
+  <div class="example">
+    <div class="example-head">✦ Örnek – Kütüphane Rafı</div>
+    <p>5 farklı kitap yan yana kaç farklı şekilde sıralanabilir?</p>
+    <div class="solution">
+      <strong>Çözüm:</strong> 5 × 4 × 3 × 2 × 1 = <strong>5! = 120</strong> farklı sıralama
+    </div>
+  </div>
+
+  <div class="example">
+    <div class="example-head">✦ Örnek – Otopark</div>
+    <p>7 farklı renkli araç 4 araçlık otoparka kaç farklı renk sıralamasıyla park edebilir?</p>
+    <div class="solution">
+      <strong>Çözüm:</strong> 7 × 6 × 5 × 4 = <strong>P(7,4) = 840</strong> farklı sıralama
+    </div>
+  </div>
+
+  <h3>Seçme Sayısı (Kombinasyon)</h3>
+
+  <div class="formula-box">
+    <div class="label">n nesneden r tanesini seçme sayısı</div>
+    <div class="expr">C(n, r) = n! / (r! × (n−r)!)</div>
+    <div class="desc">Sıra önemli değildir. Sadece hangi elemanların seçildiği önemlidir.</div>
+  </div>
+
+  <div class="info-box warn">
+    <span class="info-icon">⚠️</span>
+    <p><strong>Sıralama mı, Seçme mi?</strong> Problemi okurken sorun; <em>"sıra önemli mi?"</em> diye sor. Önemli ise P(n,r), değilse C(n,r) kullan.</p>
+  </div>
+
+  <h3>Algoritmik Yapı (10.3.2)</h3>
+  <p>Algoritmik düşünme, bir problemi adım adım çözme sürecidir. Matematik dersinde akış şemaları ve sözde kod bu yapıyı görselleştirir.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title">Akış Şeması Sembolleri</div>
+      <p>Başlat/Bitir → Oval &nbsp;|&nbsp; İşlem → Dikdörtgen &nbsp;|&nbsp; Karar → Eşkenar dörtgen &nbsp;|&nbsp; Giriş/Çıkış → Paralelkenar</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Algoritmik Dil</div>
+      <p>Koşullu ifadeler: <em>EĞER … İSE … DEĞİLSE</em><br>Döngüler: <em>TEKRARLA … KADAR</em><br>Atama: değişken ← ifade</p>
+    </div>
+  </div>
+</section>
+
+<!-- KONU 3 -->
+<section class="section s3" id="konu3">
+  <div class="section-header">
+    <div class="section-num">10.5.1</div>
+    <div>
+      <div class="section-title">Analitik İnceleme: Uzaklık ve Bölüm Noktası</div>
+      <div class="section-sub">Analitik İnceleme Teması</div>
+    </div>
+  </div>
+
+  <div class="outcome-tag">🎯 Hedef: Dik koordinat sisteminde iki nokta arasındaki uzaklık ve bir doğru parçasını belli oranda bölen noktanın koordinatlarını bulabilme</div>
+
+  <div class="divider"></div>
+
+  <h3>İki Nokta Arasındaki Uzaklık Formülü</h3>
+  <p>Dik koordinat sisteminde A(x₁, y₁) ve B(x₂, y₂) noktaları verilsin.</p>
+
+  <div class="formula-box">
+    <div class="label">Uzaklık Formülü</div>
+    <div class="expr">|AB| = √[(x₂ − x₁)² + (y₂ − y₁)²]</div>
+    <div class="desc">
+      Pisagor teoreminin koordinat sistemine uygulanmış hâlidir.<br>
+      Yatay fark: Δx = x₂ − x₁ &nbsp;|&nbsp; Düşey fark: Δy = y₂ − y₁
+    </div>
+  </div>
+
+  <div class="example">
+    <div class="example-head">✦ Örnek – İstanbul – Ankara Kuş Uçuşu</div>
+    <p>İstanbul (29°D, 41°K) ve Ankara (33°D, 40°K) koordinatları kullanılarak tahmini kuş uçuşu mesafeyi hesaplayınız. (1° enlem ≈ 111 km, 1° boylam ≈ 79 km)</p>
+    <div class="solution">
+      <strong>Çözüm:</strong><br>
+      Δx = (33 − 29) × 79 = 316 km &nbsp;|&nbsp; Δy = (40 − 41) × 111 = −111 km<br>
+      |AB| = √(316² + 111²) = √(99856 + 12321) = √112177 <strong>≈ 335 km</strong>
+    </div>
+  </div>
+
+  <h3>Orta Nokta</h3>
+  <p>A(x₁, y₁) ve B(x₂, y₂) noktalarının orta noktası M:</p>
+
+  <div class="formula-box">
+    <div class="label">Orta Nokta Formülü</div>
+    <div class="expr">M = ( (x₁ + x₂)/2 , (y₁ + y₂)/2 )</div>
+    <div class="desc">Bölüm noktası formülünün k = 1 (eşit oranında bölme) özel hâlidir.</div>
+  </div>
+
+  <h3>Bölüm Noktası (İçten Bölme)</h3>
+  <p>A(x₁, y₁) ve B(x₂, y₂) uç noktaları verilen [AB] doğru parçasını <span class="hl">AC/CB = k</span> oranında içten bölen C noktası:</p>
+
+  <div class="formula-box">
+    <div class="label">İçten Bölme Formülü</div>
+    <div class="expr">C = ( (x₁ + k·x₂)/(1+k) , (y₁ + k·y₂)/(1+k) )</div>
+    <div class="desc">
+      k = 1 → Orta nokta &nbsp;|&nbsp; k = 1/2 → A'ya daha yakın &nbsp;|&nbsp; k = 2 → B'ye daha yakın
+    </div>
+  </div>
+
+  <h3>Bölüm Noktası (Dıştan Bölme)</h3>
+  <div class="formula-box">
+    <div class="label">Dıştan Bölme Formülü</div>
+    <div class="expr">T = ( (x₁ − k·x₂)/(1−k) , (y₁ − k·y₂)/(1−k) )</div>
+    <div class="desc">Nokta, doğru parçasının uzantısında yer alır.</div>
+  </div>
+
+  <div class="example">
+    <div class="example-head">✦ Örnek – İki Araç Buluşması</div>
+    <p>A(−3, 6)'dan hareket eden araç 3 saatte, B(7, −4)'ten hareket eden araç 2 saatte karşılıklı hedefe ulaşmaktadır. [AB] üzerindeki C buluşma noktasını bulunuz.</p>
+    <div class="solution">
+      <strong>Çözüm:</strong> Hızlar ters oranlı, dolayısıyla AC/CB = 3/2 = k<br>
+      Cx = (−3 + (3/2)·7) / (1 + 3/2) = (−3 + 10.5) / 2.5 = 7.5/2.5 = <strong>3</strong><br>
+      Cy = (6 + (3/2)·(−4)) / 2.5 = (6 − 6) / 2.5 = <strong>0</strong><br>
+      C = <strong>(3, 0)</strong>
+    </div>
+  </div>
+
+  <h3>Ağırlık Merkezi</h3>
+  <p>A(x₁,y₁), B(x₂,y₂), C(x₃,y₃) köşeli üçgenin ağırlık merkezi G:</p>
+  <div class="formula-box">
+    <div class="label">Ağırlık Merkezi</div>
+    <div class="expr">G = ( (x₁+x₂+x₃)/3 , (y₁+y₂+y₃)/3 )</div>
+    <div class="desc">Her kenarortayı 2:1 oranında böler.</div>
+  </div>
+
+  <div class="info-box tip">
+    <span class="info-icon">💡</span>
+    <p>Uzaklık formülü ile bölüm noktası formülü, <strong>Pisagor teoremi + benzerlik</strong> üzerine kurulmuştur. İkisi arasındaki ilişkiyi koordinat sisteminde benzer üçgen çizerek görebilirsin.</p>
+  </div>
+</section>
+
+<!-- KONU 4 -->
+<section class="section s4" id="konu4">
+  <div class="section-header">
+    <div class="section-num">10.7.1</div>
+    <div>
+      <div class="section-title">Koşullu Olasılık</div>
+      <div class="section-sub">Veriden Olasılığa Teması</div>
+    </div>
+  </div>
+
+  <div class="outcome-tag">🎯 Hedef: Koşullu olasılık ile çıkarım yapabilme</div>
+
+  <div class="divider"></div>
+
+  <h3>Koşullu Olasılık Nedir?</h3>
+  <p><span class="hl">B olayının gerçekleştiği bilindiğinde A olayının gerçekleşme olasılığı</span>, A'nın B'ye göre koşullu olasılığı olarak tanımlanır ve <span class="mono">P(A|B)</span> ile gösterilir.</p>
+
+  <div class="formula-box">
+    <div class="label">Koşullu Olasılık Formülü</div>
+    <div class="expr">P(A|B) = P(A ∩ B) / P(B)</div>
+    <div class="desc">
+      Eşdeğer tanım:&nbsp; P(A|B) = (B içindeki A'ya ait çıktı sayısı) / (B'nin tüm çıktı sayısı)<br>
+      Koşul: P(B) ≠ 0
+    </div>
+  </div>
+
+  <div class="example">
+    <div class="example-head">✦ Örnek – Erasmus+ Seçimi</div>
+    <p>Bir sınıfta 36 erkek, 24 kız öğrenci var. Erkeklerin yarısı, kızların 1/3'ü yabancı dil sınavında başarısız olmuştur. Başarılı bir öğrenci seçildiğinde bu öğrencinin erkek olma olasılığı nedir?</p>
+    <div class="solution">
+      <strong>Çözüm:</strong><br>
+      Başarılı erkek: 36 − 18 = 18 &nbsp;|&nbsp; Başarılı kız: 24 − 8 = 16 &nbsp;|&nbsp; Toplam başarılı: 34<br>
+      B = Başarılı olma, A = Erkek olma<br>
+      <strong>P(A|B) = 18/34 = 9/17</strong>
+    </div>
+  </div>
+
+  <h3>Bağımlı ve Bağımsız Olaylar</h3>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title">🔗 Bağımlı Olaylar</div>
+      <p>Bir olayın gerçekleşmesi diğerinin olasılığını <strong>değiştirir</strong>.<br><br>Örnek: Geri koymadan çekiş işlemi.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">🆓 Bağımsız Olaylar</div>
+      <p>Bir olayın gerçekleşmesi diğerinin olasılığını <strong>değiştirmez</strong>.<br><br>Örnek: Geri koyarak çekiş; ayrı zarlar.</p>
+    </div>
+  </div>
+
+  <div class="formula-box">
+    <div class="label">Bağımsız Olaylar İçin Çarpım Kuralı</div>
+    <div class="expr">P(A ∩ B) = P(A) × P(B)</div>
+    <div class="desc">Bu eşitlik yalnızca A ve B bağımsızsa geçerlidir.</div>
+  </div>
+
+  <h3>Koşullu Olasılık Problem Çözme Adımları</h3>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body"><strong>Örnek uzayı belirle</strong>: Tüm olası çıktıları listele veya tablo/ağaç şeması çiz.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body"><strong>Koşulu dikkate al</strong>: "B gerçekleşti" demek, örnek uzayın B ile sınırlandığı anlamına gelir.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body"><strong>Yeni örnek uzay</strong>: B'nin tüm çıktıları içinde A'nın kaçında gerçekleştiğini say.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body"><strong>Formülü uygula</strong>: P(A|B) = (A∩B çıktı sayısı) / (B çıktı sayısı)</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <div class="example-head">✦ Örnek – Müze Gezisi</div>
+    <p>Sıla en az 2 arkadaşıyla müzeye gidecektir. Asu, Buse ve Canan'a teklif yapılıyor. Sıla'nın müzeye gittiği bilindiğinde (≥2 kişi evet dedi) tam 3 arkadaşıyla gitme olasılığı nedir?</p>
+    <div class="solution">
+      <strong>Çözüm:</strong> B: {en az 2 kişinin evet demesi} → EEE, EEH, EHE, HEE (4 durum)<br>
+      A: {3 kişinin evet demesi} → EEE (1 durum)<br>
+      <strong>P(A|B) = 1/4</strong>
+    </div>
+  </div>
+
+  <div class="info-box tip">
+    <span class="info-icon">💡</span>
+    <p><strong>Hızlı Kontrol:</strong> Bağımsızlık testi: P(A|B) = P(A) ise olaylar bağımsızdır; değilse bağımlıdır.</p>
+  </div>
+
+  <div class="info-box warn">
+    <span class="info-icon">⚠️</span>
+    <p><strong>Dikkat:</strong> P(A|B) ≠ P(B|A) genellikle. Koşulun hangi yönde verildiğine dikkat et!</p>
+  </div>
+</section>
+</div>
+
+<div class="footer">
+  MEB Matematik 10. Sınıf Ders Kitabı'ndan Hazırlanmıştır &nbsp;·&nbsp; Senaryo 1 &nbsp;·&nbsp; 10.2.6 · 10.3.1 · 10.3.2 · 10.5.1 · 10.7.1
+</div>
+
+</body>
+</html>
